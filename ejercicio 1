@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    float pesos[5];
+    float suma = 0.0;
+
+    
+    for (int i = 0; i < 5; i++) {
+        printf("Ingrese el peso de la persona %d: ", i + 1);
+        scanf("%f", &pesos[i]);
+        suma += pesos[i];
+    }
+
+  
+    float promedio = suma / 5;
+    printf("Peso promedio: %.2f\n", promedio);
+
+    
+    int mas_que_promedio = 0, menos_que_promedio = 0;
+    for (int i = 0; i < 5; i++) {
+        if (pesos[i] > promedio)
+            mas_que_promedio++;
+        else if (pesos[i] < promedio)
+            menos_que_promedio++;
+    }
+
+    printf("Personas que pesan más que el promedio: %d\n", mas_que_promedio);
+    printf("Personas que pesan menos que el promedio: %d\n", menos_que_promedio);
+
+    return 0;
+}
