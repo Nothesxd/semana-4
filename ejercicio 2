@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int numeros[10];
+
+    
+    for (int i = 0; i < 10; i++) {
+        printf("Ingrese el número %d: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
+
+    
+    int max_valor = numeros[0];
+    int min_valor = numeros[0];
+    
+    for (int i = 1; i < 10; i++) {
+        if (numeros[i] > max_valor)
+            max_valor = numeros[i];
+        if (numeros[i] < min_valor)
+            min_valor = numeros[i];
+    }
+
+    printf("Valor máximo: %d\n", max_valor);
+    printf("Valor mínimo: %d\n", min_valor);
+
+    return 0;
+}
