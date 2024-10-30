@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+void ingresar_calificaciones(float calificaciones[], int cantidad) {
+    for (int i = 0; i < cantidad; i++) {
+        printf("Ingrese la calificación del estudiante %d: ", i + 1);
+        scanf("%f", &calificaciones[i]);
+    }
+}
+
+void mostrar_calificaciones(float calificaciones[], int cantidad) {
+    printf("Calificaciones:\n");
+    for (int i = 0; i < cantidad; i++) {
+        printf("Estudiante %d: %.2f\n", i + 1, calificaciones[i]);
+    }
+}
+
+void clasificar_calificaciones(float calificaciones[], int cantidad) {
+    int categorias[5] = {0, 0, 0, 0, 0};  // A, B, C, D, E
+    float max_nota = calificaciones[0], min_nota = calificaciones[0];
+
+    for (int i = 0; i < cantidad; i++) {
+        if (calificaciones[i] >= 9 && calificaciones[i] <= 10)
+            categorias[0]++;
+        else if (calificaciones[i] >= 8 && calificaciones[i] < 9)
+            categorias[1]++;
+        else if (calificaciones[i] >= 6 && calificaciones[i] < 8)
+            categorias[2]++;
+        else if (calificaciones[i] >= 4 && calificaciones[i] < 6)
+            categorias[3]++;
+        else
+            categorias[4]++;
+
+        if (calificaciones[i] > max_nota)
+            max_nota = calificaciones[i];
+        if (calificaciones[i] < min_nota)
+            min_nota = calificaciones[i];
+    }
+
+    printf("Clasificación:\n");
+    printf("Estudiantes con calificación A: %d\n", categorias[0]);
+    printf("Estudiantes con calificación B: %d\n", categorias[1]);
+    printf("Estudiantes con calificación C: %d\n", categorias[2]);
+    printf("Estudiantes con calificación D: %d\n", categorias[3]);
+    printf("Estudiantes con calificación E: %d\n", categorias[4]);
+    printf("Nota más alta: %.2f\n", max_nota);
+    printf("Nota más baja: %.2f\n", min_nota);
+}
+
+int main() {
+    float calificaciones[100];
+    int opcion, cantidad = 0;
+
+    do {
+        printf("\n1. Ingresar calificaciones\n");
+        printf("2. Mostrar calificaciones\n");
+        printf("3. Calcular clasificación de calificaciones\n");
+        printf("4. Salir\n");
+        printf("Seleccione una opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                printf("Ingrese la cantidad de alumnos: ");
+                scanf("%d", &cantidad);
+                ingresar_calificaciones(calificaciones, cantidad);
+                break;
+            case 2:
+                mostrar_calificaciones(calificaciones, cantidad);
+                break;
+            case 3:
+                clasificar_calificaciones(calificaciones, cantidad);
+                break;
+            case 4:
+                printf("Saliendo...\n");
+                break;
+            default:
+                printf("Opción no válida. Intente de nuevo.\n");
+        }
+    } while (opcion != 4);
+
+    return 0;
+}
